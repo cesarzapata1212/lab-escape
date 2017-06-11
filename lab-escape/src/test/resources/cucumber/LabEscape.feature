@@ -11,7 +11,7 @@ Feature: Lab Escape
       | O | O | O | O |
     And the starting point X 1 and Y 3
     When we search for an exit path
-    Then the path should be drawn
+    Then the path should be drawn as follows
       | O | O | O | O |
       | O |   |   | • |
       | O |   |   | O |
