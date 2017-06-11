@@ -15,16 +15,20 @@ public class LabEscape {
      *                  The escape point is always on the border (see README)
      * @param startX    Starting row number for the escape. 0 based.
      * @param startY    Starting column number for the escape. 0 based.
-     * @return          A char matrix with the same labyrinth and a path drawn from the starting point to the escape
-     * @throws          NoEscapeException when no path exists to the outside, from the selected starting point
+     * @return A char matrix with the same labyrinth and a path drawn from the starting point to the escape
+     * @throws NoEscapeException when no path exists to the outside, from the selected starting point
      */
     public static char[][] drawPathForEscape(char[][] labyrinth, int startX, int startY) throws NoEscapeException {
 
-        return new char[][]{
-                {WALL, WALL, WALL, WALL},
-                {WALL, FREE, FREE, PATH},
-                {WALL, FREE, FREE, WALL},
-                {WALL, WALL, WALL, WALL},
-        };
+        Maze maze = new Maze(labyrinth);
+        MazePosition start = new MazePosition(startX, startY);
+
+        if (start.equals(maze.getExit())) {
+            labyrinth[start.getX()][start.getY()] = PATH;
+            return labyrinth;
+        }
+
+        return null;
     }
+
 }
