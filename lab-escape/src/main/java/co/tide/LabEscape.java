@@ -1,3 +1,5 @@
+package co.tide;
+
 /**
  * Please implement your solution here
  */
