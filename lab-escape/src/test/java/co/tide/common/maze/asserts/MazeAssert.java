@@ -1,4 +1,4 @@
-package co.tide.common.asserts;
+package co.tide.common.maze.asserts;
 
 import static org.junit.Assert.assertEquals;
 

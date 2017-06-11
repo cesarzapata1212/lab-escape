@@ -7,7 +7,7 @@ import cucumber.api.java.en.When;
 
 import java.util.List;
 
-import static co.tide.common.asserts.MazeAssert.assertMazesAreEqual;
+import static co.tide.common.maze.asserts.MazeAssert.assertMazesAreEqual;
 
 /**
  * Created by cesar on 6/11/17.
