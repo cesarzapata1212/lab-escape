@@ -16,3 +16,18 @@ Feature: Lab Escape
       | O |   |   | • |
       | O |   |   | O |
       | O | O | O | O |
+
+
+  Scenario: Starting point is next to the exit
+    Given a maze as follows
+      | O | O | O | O |
+      | O |   |   |   |
+      | O |   |   | O |
+      | O | O | O | O |
+    And the starting point X 1 and Y 2
+    When we search for an exit path
+    Then the path should be drawn as follows
+      | O | O | O | O |
+      | O |   | • | • |
+      | O |   |   | O |
+      | O | O | O | O |

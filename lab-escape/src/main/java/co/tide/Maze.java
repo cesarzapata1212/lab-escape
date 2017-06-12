@@ -1,5 +1,8 @@
 package co.tide;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by cesar on 6/11/17.
  */
@@ -49,5 +52,39 @@ public class Maze {
 
     public MazePosition getExit() {
         return exit;
+    }
+
+    public List<MazePosition> getNeighbourPaths(MazePosition position) {
+        List<MazePosition> paths = new ArrayList<>();
+
+        char p = getPosition(position.getX() - 1, position.getY());
+        if (p == FREE) {
+            paths.add(new MazePosition(position.getX() - 1, position.getY()));
+        }
+
+        p = getPosition(position.getX() + 1, position.getY());
+        if (p == FREE) {
+            paths.add(new MazePosition(position.getX() + 1, position.getY()));
+        }
+
+        p = getPosition(position.getX(), position.getY() - 1);
+        if (p == FREE) {
+            paths.add(new MazePosition(position.getX(), position.getY() - 1));
+        }
+
+        p = getPosition(position.getX(), position.getY() + 1);
+        if (p == FREE) {
+            paths.add(new MazePosition(position.getX(), position.getY() + 1));
+        }
+
+        return paths;
+    }
+
+    private char getPosition(int x, int y) {
+        try {
+            return matrix[x][y];
+        } catch (IndexOutOfBoundsException ex) {
+            return WALL;
+        }
     }
 }

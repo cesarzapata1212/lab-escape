@@ -1,5 +1,7 @@
 package co.tide;
 
+import java.util.List;
+
 /**
  * Please implement your solution here
  */
@@ -23,12 +25,22 @@ public class LabEscape {
         Maze maze = new Maze(labyrinth);
         MazePosition start = new MazePosition(startX, startY);
 
+        labyrinth[start.getX()][start.getY()] = PATH;
+
         if (start.equals(maze.getExit())) {
-            labyrinth[start.getX()][start.getY()] = PATH;
             return labyrinth;
         }
 
-        return null;
+        List<MazePosition> paths = maze.getNeighbourPaths(start);
+
+        for (MazePosition p : paths) {
+            if(p.equals(maze.getExit())){
+                labyrinth[p.getX()][p.getY()] = PATH;
+                return labyrinth;
+            }
+        }
+
+        return new char[0][0];
     }
 
 }
