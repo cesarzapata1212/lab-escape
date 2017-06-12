@@ -7,14 +7,13 @@ import cucumber.api.java.en.When;
 
 import java.util.List;
 
-import static co.tide.common.maze.asserts.MazeAssert.assertMazesAreEqual;
+import static org.junit.Assert.assertArrayEquals;
 
 /**
  * Created by cesar on 6/11/17.
  */
 public class LabEscapeStepDescription {
 
-    private static final char PATH = ' ';
     private char[][] maze;
     private int startX;
     private int startY;
@@ -43,7 +42,7 @@ public class LabEscapeStepDescription {
 
         char[][] expected = MazeUtils.toCharMatrix(matrix);
 
-        assertMazesAreEqual(expected, actual);
+        assertArrayEquals(expected, actual);
 
     }
 

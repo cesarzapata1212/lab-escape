@@ -31,3 +31,17 @@ Feature: Lab Escape
       | O |   | • | • |
       | O |   |   | O |
       | O | O | O | O |
+
+  Scenario: Find exit in a straight line
+    Given a maze as follows
+      | O | O | O | O |
+      | O |   |   |   |
+      | O | O | O | O |
+      | O | O | O | O |
+    And the starting point X 1 and Y 1
+    When we search for an exit path
+    Then the path should be drawn as follows
+      | O | O | O | O |
+      | O | • | • | • |
+      | O | O | O | O |
+      | O | O | O | O |

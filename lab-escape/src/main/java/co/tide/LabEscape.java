@@ -1,5 +1,6 @@
 package co.tide;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -10,6 +11,8 @@ public class LabEscape {
     private static final char WALL = 'O';
     private static final char FREE = ' ';
     private static final char PATH = '•';
+    private static List<MazePosition> visited;
+    private static List<MazePosition> pathToExit;
 
     /**
      * @param labyrinth A labyrinth drawn on a matrix of characters. It's at least 4x4, can be a rectangle or a square.
@@ -34,13 +37,54 @@ public class LabEscape {
         List<MazePosition> paths = maze.getNeighbourPaths(start);
 
         for (MazePosition p : paths) {
-            if(p.equals(maze.getExit())){
+            if (p.equals(maze.getExit())) {
                 labyrinth[p.getX()][p.getY()] = PATH;
                 return labyrinth;
             }
         }
 
-        return new char[0][0];
+        visited = new ArrayList<>();
+        pathToExit = new ArrayList<>();
+
+        if (pathToExitFound(maze, start)) {
+
+            for (MazePosition p : pathToExit) {
+                labyrinth[p.getX()][p.getY()] = PATH;
+            }
+
+        }
+
+        return labyrinth;
+    }
+
+    private static boolean pathToExitFound(Maze maze, MazePosition position) {
+
+        visited.add(position);
+        pathToExit.add(position);
+
+        List<MazePosition> possiblePaths = maze.getNeighbourPaths(position);
+
+        if (position.equals(maze.getExit())) {
+            return true;
+        }
+
+        boolean hasFoundExit = false;
+
+        for (MazePosition p : possiblePaths) {
+
+            if (!visited.contains(p)) {
+                hasFoundExit = pathToExitFound(maze, p);
+            }
+
+            if (hasFoundExit) {
+                return true;
+            }
+
+            pathToExit.remove(p);
+
+        }
+
+        return false;
     }
 
 }
