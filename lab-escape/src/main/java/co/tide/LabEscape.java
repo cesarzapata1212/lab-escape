@@ -31,10 +31,12 @@ public class LabEscape {
         visited = new ArrayList<>();
         pathToExit = new ArrayList<>();
 
-        if (searchForPathToExit(maze, start)) {
-            for (MazePosition p : pathToExit) {
-                labyrinth[p.getX()][p.getY()] = PATH;
-            }
+        if (!searchForPathToExit(maze, start)) {
+            throw new NoEscapeException();
+        }
+
+        for (MazePosition p : pathToExit) {
+            labyrinth[p.getX()][p.getY()] = PATH;
         }
 
         return labyrinth;

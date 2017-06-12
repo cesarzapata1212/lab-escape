@@ -8,6 +8,7 @@ import cucumber.api.java.en.When;
 import java.util.List;
 
 import static org.junit.Assert.assertArrayEquals;
+import static org.junit.Assert.assertNotNull;
 
 /**
  * Created by cesar on 6/11/17.
@@ -18,6 +19,7 @@ public class LabEscapeStepDescription {
     private int startX;
     private int startY;
     private char[][] actual;
+    private Exception expectedException;
 
     @Given("^a maze as follows$")
     public void a_maze_as_follows(List<List<String>> matrix) throws Throwable {
@@ -32,9 +34,11 @@ public class LabEscapeStepDescription {
 
     @When("^we search for an exit path$")
     public void we_search_for_an_exit_path() throws Throwable {
-
-        this.actual = LabEscape.drawPathForEscape(maze, startX, startY);
-
+        try {
+            this.actual = LabEscape.drawPathForEscape(maze, startX, startY);
+        } catch (NoEscapeException ex) {
+            this.expectedException = ex;
+        }
     }
 
     @Then("^the path should be drawn as follows$")
@@ -43,6 +47,13 @@ public class LabEscapeStepDescription {
         char[][] expected = MazeUtils.toCharMatrix(matrix);
 
         assertArrayEquals(expected, actual);
+
+    }
+
+    @Then("^we should receive an error$")
+    public void we_should_receive_an_error() throws Throwable {
+
+        assertNotNull(this.expectedException);
 
     }
 
