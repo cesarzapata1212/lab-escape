@@ -1,4 +1,4 @@
-package co.tide;
+package co.tide.escape;
 
 import java.util.Objects;
 

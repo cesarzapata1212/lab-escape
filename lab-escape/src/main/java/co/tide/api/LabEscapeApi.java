@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class LabEscapeApi {
 
-
     @RequestMapping(value = "/draw-escape", method = RequestMethod.POST)
     public char[][] drawEscape(@RequestBody char[][] matrix){
 

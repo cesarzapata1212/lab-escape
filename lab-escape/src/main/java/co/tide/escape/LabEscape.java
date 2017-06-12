@@ -1,4 +1,6 @@
-package co.tide;
+package co.tide.escape;
+
+import co.tide.escape.exceptions.NoEscapeException;
 
 import java.util.ArrayList;
 import java.util.List;
