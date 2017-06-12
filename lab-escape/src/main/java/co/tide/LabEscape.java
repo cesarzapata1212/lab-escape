@@ -28,62 +28,43 @@ public class LabEscape {
         Maze maze = new Maze(labyrinth);
         MazePosition start = new MazePosition(startX, startY);
 
-        labyrinth[start.getX()][start.getY()] = PATH;
-
-        if (start.equals(maze.getExit())) {
-            return labyrinth;
-        }
-
-        List<MazePosition> paths = maze.getNeighbourPaths(start);
-
-        for (MazePosition p : paths) {
-            if (p.equals(maze.getExit())) {
-                labyrinth[p.getX()][p.getY()] = PATH;
-                return labyrinth;
-            }
-        }
-
         visited = new ArrayList<>();
         pathToExit = new ArrayList<>();
 
-        if (pathToExitFound(maze, start)) {
-
+        if (searchForPathToExit(maze, start)) {
             for (MazePosition p : pathToExit) {
                 labyrinth[p.getX()][p.getY()] = PATH;
             }
-
         }
 
         return labyrinth;
     }
 
-    private static boolean pathToExitFound(Maze maze, MazePosition position) {
+    private static boolean searchForPathToExit(Maze maze, MazePosition position) {
 
         visited.add(position);
         pathToExit.add(position);
-
-        List<MazePosition> possiblePaths = maze.getNeighbourPaths(position);
 
         if (position.equals(maze.getExit())) {
             return true;
         }
 
         boolean hasFoundExit = false;
+        List<MazePosition> possiblePaths = maze.getNeighbourPaths(position);
 
         for (MazePosition p : possiblePaths) {
 
             if (!visited.contains(p)) {
-                hasFoundExit = pathToExitFound(maze, p);
+                hasFoundExit = searchForPathToExit(maze, p);
             }
 
             if (hasFoundExit) {
                 return true;
             }
 
-            pathToExit.remove(p);
-
         }
 
+        pathToExit.remove(position);
         return false;
     }
 
