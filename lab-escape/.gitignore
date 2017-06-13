@@ -1,3 +1,6 @@
 .idea
 build
 target
+.gradle
+classes
+out
