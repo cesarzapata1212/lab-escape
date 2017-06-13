@@ -70,12 +70,52 @@ Feature: Lab Escape
       | O | O | O | O | O | O | O | O | O | O |
 
 
+  Scenario: two different paths does not get in loop
+    Given a maze as follows
+      | O | O | O | O | O |
+      | O |   |   |   |   |
+      | O |   | O |   | O |
+      | O |   |   |   | O |
+      | O | O | O | O | O |
+    And the starting point X 3 and Y 1
+    When we search for an exit path
+    Then the path should be drawn as follows
+      | O | O | O | O | O |
+      | O | • | • | • | • |
+      | O | • | O |   | O |
+      | O | • |   |   | O |
+      | O | O | O | O | O |
+
+
   Scenario: No path to exit
     Given a maze as follows
-      | O | O | O | O |
-      | O |   | O |   |
+      | O | O | O |   |
+      | O |   |   | O |
       | O |   |   | O |
       | O | O | O | O |
     And the starting point X 1 and Y 1
+    When we search for an exit path
+    Then we should receive an error
+
+
+  Scenario: matrix width is too small
+    Given a maze as follows
+      | O | O | O |
+      | O |   | O |
+      | O |   |   |
+      | O | O | O |
+    And the starting point X 1 and Y 1
+    When we search for an exit path
+    Then we should receive an error
+
+
+  Scenario: starting point is same as wall
+    Given a maze as follows
+      | O | O | O | O | O |
+      | O |   |   |   | O |
+      | O |   | O |   |   |
+      | O |   |   |   | O |
+      | O | O | O | O | O |
+    And the starting point X 2 and Y 2
     When we search for an exit path
     Then we should receive an error

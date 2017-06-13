@@ -8,14 +8,18 @@ import java.util.List;
  */
 public class Maze {
 
-    private static final char WALL = 'O';
-    private static final char FREE = ' ';
-    private static final char PATH = '•';
+    public static final char WALL = 'O';
+    public static final char FREE = ' ';
+    public static final char PATH = '•';
 
     private final char[][] matrix;
     private MazePosition exit;
 
     public Maze(char[][] matrix) {
+        if(matrix.length < 4 || matrix[0].length < 4){
+            throw new IllegalArgumentException("matrix");
+        }
+
         this.matrix = matrix;
 
         for (int i = 0; i < matrix.length; i++) {

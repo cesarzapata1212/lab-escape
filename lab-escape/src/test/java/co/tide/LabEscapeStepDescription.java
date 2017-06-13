@@ -38,7 +38,7 @@ public class LabEscapeStepDescription {
     public void we_search_for_an_exit_path() throws Throwable {
         try {
             this.actual = LabEscape.drawPathForEscape(maze, startX, startY);
-        } catch (NoEscapeException ex) {
+        } catch (Exception ex) {
             this.expectedException = ex;
         }
     }

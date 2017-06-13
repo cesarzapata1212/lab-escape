@@ -10,9 +10,6 @@ import java.util.List;
  */
 public class LabEscape {
 
-    private static final char WALL = 'O';
-    private static final char FREE = ' ';
-    private static final char PATH = '•';
     private static List<MazePosition> visited;
     private static List<MazePosition> pathToExit;
 
@@ -30,6 +27,10 @@ public class LabEscape {
         Maze maze = new Maze(labyrinth);
         MazePosition start = new MazePosition(startX, startY);
 
+        if(labyrinth[startX][startY] == Maze.WALL){
+            throw new NoEscapeException();
+        }
+
         visited = new ArrayList<>();
         pathToExit = new ArrayList<>();
 
@@ -38,7 +39,7 @@ public class LabEscape {
         }
 
         for (MazePosition p : pathToExit) {
-            labyrinth[p.getX()][p.getY()] = PATH;
+            labyrinth[p.getX()][p.getY()] = Maze.PATH;
         }
 
         return labyrinth;
