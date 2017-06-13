@@ -25,11 +25,12 @@ public class LabEscape {
     public static char[][] drawPathForEscape(char[][] labyrinth, int startX, int startY) throws NoEscapeException {
 
         Maze maze = new Maze(labyrinth);
-        MazePosition start = new MazePosition(startX, startY);
 
         if(labyrinth[startX][startY] == Maze.WALL){
             throw new NoEscapeException();
         }
+
+        MazePosition start = new MazePosition(startX, startY);
 
         visited = new ArrayList<>();
         pathToExit = new ArrayList<>();

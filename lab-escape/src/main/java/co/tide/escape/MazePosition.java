@@ -10,7 +10,7 @@ public class MazePosition {
     private final int x;
     private final int y;
 
-    public MazePosition(int x, int y) {
+    public MazePosition(final int x, final int y) {
         this.x = x;
         this.y = y;
     }
@@ -24,11 +24,11 @@ public class MazePosition {
     }
 
     @Override
-    public boolean equals(Object obj) {
-        try{
+    public boolean equals(final Object obj) {
+        try {
             MazePosition other = (MazePosition) obj;
             return this.x == other.x && this.y == other.y;
-        }catch (Exception ex){
+        } catch (Exception ex) {
             return false;
         }
     }

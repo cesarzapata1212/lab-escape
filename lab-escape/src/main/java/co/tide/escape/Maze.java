@@ -15,9 +15,9 @@ public class Maze {
     private final char[][] matrix;
     private MazePosition exit;
 
-    public Maze(char[][] matrix) {
+    public Maze(final char[][] matrix) {
         if(matrix.length < 4 || matrix[0].length < 4){
-            throw new IllegalArgumentException("matrix");
+            throw new IllegalArgumentException("matrix must be at least 4x4");
         }
 
         this.matrix = matrix;

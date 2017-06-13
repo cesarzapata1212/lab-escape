@@ -2,7 +2,6 @@ package co.tide;
 
 import co.tide.common.maze.MazeUtils;
 import co.tide.escape.LabEscape;
-import co.tide.escape.exceptions.NoEscapeException;
 import cucumber.api.java.en.Given;
 import cucumber.api.java.en.Then;
 import cucumber.api.java.en.When;
